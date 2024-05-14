@@ -1,10 +1,10 @@
-function minimumTotal(triangle) {
-  const n = triangle.length;
-  const dp = new Array(n + 1).fill(0);
-  for (let i = n - 1; i >= 0; i--) {
-    for (let j = 0; j <= i; j++) {
-      dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);
-    }
+function generateParenthesis(n) {
+  const result = [];
+  backtrack("", 0, 0);
+  return result;
+  function backtrack(current, open, close) {
+    if (current.length === 2 * n) result.push(current);
+    if (open < n) backtrack(current + "(", open + 1, close);
+    if (close < open) backtrack(current + ")", open, close + 1);
   }
-  return dp[0];
 }
