@@ -1,10 +1,13 @@
-function generateParenthesis(n) {
-  const result = [];
-  backtrack("", 0, 0);
-  return result;
-  function backtrack(current, open, close) {
-    if (current.length === 2 * n) result.push(current);
-    if (open < n) backtrack(current + "(", open + 1, close);
-    if (close < open) backtrack(current + ")", open, close + 1);
+function maxProduct(nums) {
+  if (nums.length === 0) return 0;
+  let maxSoFar = nums[0];
+  let minSoFar = nums[0];
+  let maxProduct = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    const temp = maxSoFar;
+    maxSoFar = Math.max(nums[i], nums[i] * maxSoFar, nums[i] * minSoFar);
+    minSoFar = Math.min(nums[i], nums[i] * temp, nums[i] * minSoFar);
+    maxProduct = Math.max(maxProduct, maxSoFar);
   }
+  return maxProduct;
 }
